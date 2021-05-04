@@ -1,0 +1,51 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: http-ingress
+  annotations:
+spec:
+  tls:
+  - hosts:
+      - www.twatter.nl
+    secretName: twatter2
+  rules:
+  - host: www.twatter.nl 
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: ui-svc
+            port:
+              number: 80
+  - host: gateway.twatter.nl
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: gateway-svc
+            port:
+              number: 8123
+  - host: userservice.twatter.nl
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: userservice-svc
+            port:
+              number: 5002
+  - host: postservice.twatter.nl
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: postservice-svc
+            port:
+              number: 5001
