@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: postservice-svc
+  labels:
+    run: postservice-svc
+spec:
+  type: NodePort
+  ports:
+  - port: 5001
+    protocol: TCP
+  selector:
+    run: postservice
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postservice
+spec:
+  selector:
+    matchLabels:
+      run: postservice
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: postservice
+    spec:
+      containers:
+      - name: postservice
+        image: twatter/postservice:0.0.5
+        ports:
+        - containerPort: 5001
