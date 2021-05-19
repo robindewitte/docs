@@ -9,7 +9,7 @@ spec:
       - www.twatter.nl
     secretName: twatter2
   rules:
-  - host: www.twatter.nl 
+  - host: www.twatter84.nl 
     http:
       paths:
       - pathType: Prefix
@@ -19,7 +19,7 @@ spec:
             name: ui-svc
             port:
               number: 80
-  - host: gateway.twatter.nl
+  - host: twatter84.gateway.nl
     http:
       paths:
       - pathType: Prefix
@@ -29,7 +29,7 @@ spec:
             name: gateway-svc
             port:
               number: 8123
-  - host: userservice.twatter.nl
+  - host: twatter84.userservice.nl
     http:
       paths:
       - pathType: Prefix
@@ -39,7 +39,7 @@ spec:
             name: userservice-svc
             port:
               number: 5002
-  - host: postservice.twatter.nl
+  - host: twatter84.postservice.nl
     http:
       paths:
       - pathType: Prefix
