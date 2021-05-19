@@ -27,6 +27,6 @@ spec:
     spec:
       containers:
       - name: gateway
-        image: twatter/api-gateway:0.0.5.2
+        image: api-gateway
         ports:
         - containerPort: 8123
