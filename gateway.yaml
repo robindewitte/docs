@@ -5,8 +5,10 @@ metadata:
   labels:
     run: gateway-svc
 spec:
+  type: NodePort
   ports:
   - port: 8123
+    nodePort: 30001
     protocol: TCP
   selector:
     run: gateway
