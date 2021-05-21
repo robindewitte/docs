@@ -29,6 +29,6 @@ spec:
     spec:
       containers:
       - name: userservice
-        image: twatter/user-service:0.0.5
+        image: robindewitte/twatter:userservice
         ports:
         - containerPort: 5002
