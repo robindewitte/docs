@@ -8,6 +8,7 @@ spec:
   type: NodePort
   ports:
   - port: 5001
+    nodePort: 30003
     protocol: TCP
   selector:
     run: postservice
@@ -28,6 +29,6 @@ spec:
     spec:
       containers:
       - name: postservice
-        image: twatter/postservice:0.0.5
+        image: robindewitte/twatter:postservice
         ports:
         - containerPort: 5001
