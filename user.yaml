@@ -5,10 +5,10 @@ metadata:
   labels:
     run: userservice-svc
 spec:
-type: NodePort
+  type: NodePort
   ports:
   - port: 5003
-  NodePort: 30002
+    nodePort: 30002
     protocol: TCP
   selector:
     run: userservice
