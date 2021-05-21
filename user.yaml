@@ -7,7 +7,7 @@ metadata:
 spec:
   type: NodePort
   ports:
-  - port: 5003
+  - port: 5002
     nodePort: 30002
     protocol: TCP
   selector:
@@ -31,4 +31,4 @@ spec:
       - name: userservice
         image: robindewitte/twatter:userservice
         ports:
-        - containerPort: 5003
+        - containerPort: 5002
