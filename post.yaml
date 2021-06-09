@@ -29,6 +29,6 @@ spec:
     spec:
       containers:
       - name: postservice
-        image: robindewitte/twatter:postservice0.1.2
+        image: robindewitte/postservice:postservice0.1.2
         ports:
         - containerPort: 5005
