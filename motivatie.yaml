@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: motivatie-svc
+  labels:
+    run: motivatie-svc
+spec:
+  type: NodePort
+  ports:
+  - port: 5007
+    nodePort: 30009
+    protocol: TCP
+  selector:
+    run: motivatie
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: motivatie
+spec:
+  selector:
+    matchLabels:
+      run: motivatie
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: motivatie
+    spec:
+      containers:
+      - name: motivatie
+        image: robindewitte/motivatie:motivatie0.1.1
+        - containerPort: 5007
