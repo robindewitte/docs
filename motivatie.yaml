@@ -7,7 +7,7 @@ metadata:
 spec:
   type: NodePort
   ports:
-  - port: 5007
+  - port: 5009
     nodePort: 30009
     protocol: TCP
   selector:
@@ -30,4 +30,4 @@ spec:
       containers:
       - name: motivatie
         image: robindewitte/motivatie:motivatie0.1.1
-        - containerPort: 5007
+        - containerPort: 5009
