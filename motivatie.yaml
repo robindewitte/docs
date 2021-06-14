@@ -14,7 +14,6 @@ spec:
     run: motivatie
 ---
 apiVersion: apps/v1
-bericht: Krijgdekanker
 kind: Deployment
 metadata:
   name: motivatie
