@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: motivatie-svc
+  name: motivatieservice-svc
   labels:
-    run: motivatie-svc
+    run: motivatieservice-svc
 spec:
   type: NodePort
   ports:
