@@ -3,3 +3,32 @@ kind: Service
 metadata:
   name: motivatieservice-svc
   labels:
+    run: motivatieservice-svc
+spec:
+  type: NodePort
+  ports:
+  - port: 5009
+    nodePort: 30009
+    protocol: TCP
+  selector:
+    run: motivatieservice
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: motivatieservice
+spec:
+  selector:
+    matchLabels:
+      run: motivatieservice
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: motivatieservice
+    spec:
+      containers:
+      - name: motivatieservice
+        image: robindewitte/motivatieservice:motivatieservice0.1.3
+        ports:
+        - containerPort: 5009
