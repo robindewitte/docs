@@ -29,6 +29,6 @@ spec:
     spec:
       containers:
       - name: userservice
-        image: robindewitte/userservice:userservice0.1.5
+        image: robindewitte/userservice:userservice0.1.6
         ports:
         - containerPort: 5003
