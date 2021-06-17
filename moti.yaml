@@ -29,6 +29,6 @@ spec:
     spec:
       containers:
       - name: motivatieservice
-        image: robindewitte/motivatieservice:motivatieservice0.2.6
+        image: robindewitte/motivatieservice:motivatieservice0.1.5
         ports:
         - containerPort: 5009
