@@ -29,6 +29,6 @@ spec:
     spec:
       containers:
       - name: gateway
-        image: robindewitte/twatter:api-gateway0.5.2
+        image: robindewitte/twatter:api-gateway0.4.1
         ports:
         - containerPort: 8123
