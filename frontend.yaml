@@ -29,6 +29,6 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: robindewitte/frontend:frontend0.4.5
+        image: robindewitte/frontend:frontend0.4.6
         ports:
         - containerPort: 80
