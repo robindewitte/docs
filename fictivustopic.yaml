@@ -29,6 +29,6 @@ spec:
     spec:
       containers:
       - name: topic
-        image: ghcr.io/robindewitte/fictivus-topicservice:docker
+        image: ghcr.io/robindewitte/fictivus_topicservice:docker
         ports:
         - containerPort: 5003
