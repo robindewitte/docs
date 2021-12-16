@@ -17,11 +17,11 @@ spec:
           image: ghcr.io/robindewitte/gameforum-api-gateway:docker
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 8123
+            - containerPort: 5001
               protocol: TCP
           env:
             - name: ASPNETCORE_URLS
-              value: http://+:8123           
+              value: http://+:5001           
 --- 
 apiVersion: v1
 kind: Service
@@ -29,9 +29,9 @@ metadata:
     name: gateway-service
 spec:
     ports:
-    - port: 8123
+    - port: 5001
       protocol: TCP
-      targetPort: 8123
+      targetPort: 5001
     selector:
         app: gateway-pod
     type: ClusterIP
@@ -50,7 +50,7 @@ spec:
             service:
               name: gateway-service
               port:
-                number: 8123
+                number: 5001
 ---                
 apiVersion: apps/v1
 kind: Deployment
