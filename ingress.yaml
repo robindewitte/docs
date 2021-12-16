@@ -1,26 +1,20 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: http-ingress
+  name: simple-fanout
   annotations:
 spec:
-  tls:
-  - hosts:
-      - www.twatter.nl
-    secretName: twatter2
   rules:
-  - host: www.twatter84.nl 
+  - host: www.fictivusforum.nl 
     http:
       paths:
       - pathType: Prefix
         path: /
         backend:
           service:
-            name: ui-svc
+            name: account-svc
             port:
-              number: 80
-  - host: twatter84.gateway.nl
-    http:
+              number: 5002
       paths:
       - pathType: Prefix
         path: /
@@ -29,23 +23,19 @@ spec:
             name: gateway-svc
             port:
               number: 8123
-  - host: twatter84.userservice.nl
-    http:
       paths:
       - pathType: Prefix
         path: /
         backend:
           service:
-            name: userservice-svc
+            name: write-svc
             port:
               number: 5002
-  - host: twatter84.postservice.nl
-    http:
       paths:
       - pathType: Prefix
         path: /
         backend:
           service:
-            name: postservice-svc
+            name: topic-svc
             port:
-              number: 5001
+              number: 5004
