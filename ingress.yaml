@@ -1,40 +1,206 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gateway-deployment
+spec:
+  selector:
+    matchLabels:
+      app: gateway-pod
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: gateway-pod
+    spec:
+      containers:
+        - name: gateway-container
+          image: ghcr.io/robindewitte/gameforum-api-gateway:docker
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          env:
+            - name: ASPNETCORE_URLS
+              value: http://+:80             
+--- 
+apiVersion: v1
+kind: Service
+metadata:
+    name: gateway-service
+spec:
+    ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 80
+    selector:
+        app: gateway-pod
+    type: ClusterIP
+---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: simple-fanout
-  annotations:
+    name: gateway-ingress
 spec:
-  rules:
-    http:
-      paths:
-      - pathType: Prefix
-        path: /account
-        backend:
-          service:
-            name: account-svc
-            port:
-              number: 5002
-      paths:
-      - pathType: Prefix
-        path: /gateway
-        backend:
-          service:
-            name: gateway-svc
-            port:
-              number: 8123
-      paths:
-      - pathType: Prefix
-        path: /write
-        backend:
-          service:
-            name: write-svc
-            port:
-              number: 5002
-      paths:
-      - pathType: Prefix
-        path: /topic
-        backend:
-          service:
-            name: topic-svc
-            port:
-              number: 5004
+    rules:
+    - http:
+        paths:
+        - path: /gateway
+          pathType: Prefix
+          backend:
+            service:
+              name: gateway-service
+              port:
+                number: 80
+---                
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: account-deployment
+spec:
+  selector:
+    matchLabels:
+      app: account-pod
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: account-pod
+    spec:
+      containers:
+        - name: account-container
+          image: ghcr.io/robindewitte/gameforum-accountservice:docker
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+              protocol: TCP           
+--- 
+apiVersion: v1
+kind: Service
+metadata:
+    name: account-service
+spec:
+    ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 80
+    selector:
+        app: account-pod
+    type: ClusterIP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: account-ingress
+spec:
+    rules:
+    - http:
+        paths:
+        - path: /account
+          pathType: Prefix
+          backend:
+            service:
+              name: account-service
+              port:
+                number: 80
+---                
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: write-deployment
+spec:
+  selector:
+    matchLabels:
+      app: write-pod
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: write-pod
+    spec:
+      containers:
+        - name: write-container
+          image: ghcr.io/robindewitte/gameforum-topic-write:docker
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+              protocol: TCP           
+--- 
+apiVersion: v1
+kind: Service
+metadata:
+    name: write-service
+spec:
+    ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 80
+    selector:
+        app: write-pod
+    type: ClusterIP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: write-ingress
+spec:
+    rules:
+    - http:
+        paths:
+        - path: /write
+          pathType: Prefix
+          backend:
+            service:
+              name: write-service
+              port:
+                number: 80        
+---                
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: topic-deployment
+spec:
+  selector:
+    matchLabels:
+      app: topic-pod
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: topic-pod
+    spec:
+      containers:
+        - name: topic-container
+          image: ghcr.io/robindewitte/fictivus_topicservice:docker
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+              protocol: TCP           
+--- 
+apiVersion: v1
+kind: Service
+metadata:
+    name: topic-service
+spec:
+    ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 80
+    selector:
+        app: topic-pod
+    type: ClusterIP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: topic-ingress
+spec:
+    rules:
+    - http:
+        paths:
+        - path: /topic
+          pathType: Prefix
+          backend:
+            service:
+              name: topic-service
+              port:
+                number: 80                    
