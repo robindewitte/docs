@@ -5,11 +5,10 @@ metadata:
   annotations:
 spec:
   rules:
-  - host: www.fictivusforum.nl 
     http:
       paths:
       - pathType: Prefix
-        path: /
+        path: /account
         backend:
           service:
             name: account-svc
@@ -17,7 +16,7 @@ spec:
               number: 5002
       paths:
       - pathType: Prefix
-        path: /
+        path: /gateway
         backend:
           service:
             name: gateway-svc
@@ -25,7 +24,7 @@ spec:
               number: 8123
       paths:
       - pathType: Prefix
-        path: /
+        path: /write
         backend:
           service:
             name: write-svc
@@ -33,7 +32,7 @@ spec:
               number: 5002
       paths:
       - pathType: Prefix
-        path: /
+        path: /topic
         backend:
           service:
             name: topic-svc
