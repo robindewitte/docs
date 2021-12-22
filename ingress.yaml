@@ -38,7 +38,7 @@ spec:
             preStop:
               exec:
                 command: ["/usr/sbin/nginx","-s","quit"]
-...
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
