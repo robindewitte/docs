@@ -59,10 +59,7 @@ spec:
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 5001
-              protocol: TCP
-          env:
-            - name: ASPNETCORE_URLS
-              value: http://+:5001           
+              protocol: TCP      
 --- 
 apiVersion: v1
 kind: Service
