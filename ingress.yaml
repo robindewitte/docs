@@ -33,7 +33,7 @@ spec:
     spec:
       containers:
         - name: nginx
-          image: "robindewitte/fictivusfrontend:fictivusfrontend0.3"
+          image: "robindewitte/fictivusfrontend:fictivusfrontend0.4"
           lifecycle:
             preStop:
               exec:
