@@ -42,7 +42,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: gateway-deployment
+  name: gateway
 spec:
   selector:
     matchLabels:
@@ -54,7 +54,7 @@ spec:
         app: gateway-pod
     spec:
       containers:
-        - name: gateway-container
+        - name: gateway
           image: ghcr.io/robindewitte/gameforum-api-gateway:docker
           imagePullPolicy: IfNotPresent
           ports:
@@ -67,7 +67,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-    name: gateway-service
+    name: gateway
 spec:
     ports:
     - port: 5001
@@ -80,7 +80,7 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-    name: gateway-ingress
+    name: gateway
 spec:
     rules:
     - http:
@@ -89,7 +89,7 @@ spec:
           pathType: Prefix
           backend:
             service:
-              name: gateway-service
+              name: gateway
               port:
                 number: 5001
 ---                
