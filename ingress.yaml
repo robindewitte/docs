@@ -75,7 +75,7 @@ spec:
       targetPort: 5001
     selector:
         app: gateway-pod
-    type: ClusterIP
+    type: Loadbalancer
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
