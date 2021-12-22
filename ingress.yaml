@@ -57,10 +57,12 @@ spec:
         - name: gateway
           image: ghcr.io/robindewitte/gameforum-api-gateway:docker
           imagePullPolicy: IfNotPresent
-             protocol: TCP
+          ports:
+            - containerPort: 5001
+              protocol: TCP
           env:
             - name: ASPNETCORE_URLS
-              value: http://+:5001     
+              value: http://+:5001         
 --- 
 apiVersion: v1
 kind: Service
