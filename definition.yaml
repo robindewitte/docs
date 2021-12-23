@@ -4,6 +4,6 @@ metadata:
   labels:
     app: rabbitmq
   name: localhost
-  spec:
-    service:
-      type: ClusterIP
+spec:
+  service:
+    type: ClusterIP
