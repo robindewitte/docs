@@ -7,18 +7,3 @@ metadata:
 spec:
   service:
     type: LoadBalancer
-rabbitmq:
- addresses: localhost:5672
- adminAddresses: http://localhost:15672
- nodes: rabbit@localhost
- username: guest
- password: guest
- virtual_host: /
- useSSL: false
- sslProperties:
- ssl:
-   keyStore:
-   keyStorePassphrase:
-   trustStore:
-   trustStorePassphrase:
- channelCacheSize: 100
