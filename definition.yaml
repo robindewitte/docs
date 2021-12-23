@@ -7,12 +7,3 @@ metadata:
 spec:
   service:
     type: LoadBalancer
-    env:
-       - name: RABBITMQ_USERNAME
-         value: "guest"
-       - name: RABBITMQ_DEFAULT_USER
-         value: "guest"
-       - name: RABBITMQ_PASSWORD
-         value: "guest"
-       - name: RABBITMQ_DEFAULT_PASS
-         value: "guest"
