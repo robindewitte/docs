@@ -3,6 +3,7 @@ kind: RabbitmqCluster
 metadata:
   labels:
     app: rabbitmq
-  annotations:
-    some: annotation
-  name: rabbitmqcluster-sample
+  name: localhost
+  spec:
+  service:
+    type: ClusterIP
