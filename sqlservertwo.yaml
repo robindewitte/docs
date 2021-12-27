@@ -17,7 +17,7 @@ spec:
 
   containers:
   - image: mcr.microsoft.com/mssql/server
-    name: database2
+    name: databasetopic
     volumeMounts:
     - mountPath: "/var/opt/mssql/data"
       name: sqldata-storage2
