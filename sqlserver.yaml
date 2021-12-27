@@ -4,8 +4,8 @@ metadata:
   name: sqlserver
 spec:
   initContainers:
-  - name: database1
-    image: fictivusaccount
+  - name: volume-permissions
+    image: busybox
     command: ["sh", "-c", "chown -R 10001:0 /var/opt/mssql"]
     volumeMounts:
     - mountPath: "/var/opt/mssql"
@@ -17,7 +17,7 @@ spec:
 
   containers:
   - image: mcr.microsoft.com/mssql/server
-    name: databaseaccount
+    name: foo
     volumeMounts:
     - mountPath: "/var/opt/mssql/data"
       name: sqldata-storage
