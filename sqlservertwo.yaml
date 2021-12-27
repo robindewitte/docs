@@ -16,7 +16,7 @@ spec:
       claimName: dbclaim2
 
   containers:
-  - image: mcr.microsoft.com/mssql/server
+  - image: mcr.microsoft.com/mssql/server:2019-latest
     name: databasetopic
     volumeMounts:
     - mountPath: "/var/opt/mssql/data"
