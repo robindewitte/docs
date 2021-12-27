@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: sqlserver2
+spec:
+  initContainers:
+  - name: database2
+    image: fictivustopic
+    command: ["sh", "-c", "chown -R 10001:0 /var/opt/mssql"]
+    volumeMounts:
+    - mountPath: "/var/opt/mssql"
+      name: sqldata-storage2
+  volumes:
+  - name: sqldata-storage2
+    persistentVolumeClaim:
+      claimName: dbclaim2
+
+  containers:
+  - image: mcr.microsoft.com/mssql/server
+    name: database2
+    volumeMounts:
+    - mountPath: "/var/opt/mssql/data"
+      name: sqldata-storage2
+    env:
+    - name: ACCEPT_EULA
+      value: "Y"
+    - name: SA_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: sql-password
+          key: sa_password
+    - name: MSSQL_PID
+      value: Developer
