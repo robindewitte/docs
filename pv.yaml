@@ -5,6 +5,18 @@ metadata:
 provisioner: kubernetes.io/no-provisioner
 volumeBindingMode: WaitForFirstConsumer
 ---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: sqldata
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: "/sqldata"
+---
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
