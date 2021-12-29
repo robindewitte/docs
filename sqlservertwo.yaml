@@ -35,7 +35,7 @@ spec:
         - name: mssqldb2
           mountPath: /var/opt/mssql
       volumes:
-      - name: mssqldb
+      - name: mssqldb2
         persistentVolumeClaim:
           claimName: mssql-data2
 ---
