@@ -6,11 +6,11 @@ spec:
   replicas: 1
   selector:
      matchLabels:
-       app: mssql
+       app: mssql2
   template:
     metadata:
       labels:
-        app: mssql
+        app: mssql2
     spec:
       terminationGracePeriodSeconds: 30
       hostname: mssqlinst
@@ -32,8 +32,8 @@ spec:
               name: mssql
               key: SA_PASSWORD 
         volumeMounts:
-        - name: mssqldb
-          mountPath: /var/opt/mssql
+        - name: mssqldb2
+          mountPath: /var/opt/mssql2
       volumes:
       - name: mssqldb
         persistentVolumeClaim:
@@ -45,7 +45,7 @@ metadata:
   name: mssql-deployment
 spec:
   selector:
-    app: mssql
+    app: mssql2
   ports:
     - protocol: TCP
       port: 1434
