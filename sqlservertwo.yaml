@@ -20,7 +20,7 @@ spec:
       - name: mssql2
         image: mcr.microsoft.com/mssql/server:2019-latest
         ports:
-        - containerPort: 1434
+        - containerPort: 1450
         env:
         - name: MSSQL_PID
           value: "Developer"
@@ -48,6 +48,6 @@ spec:
     app: mssql2
   ports:
     - protocol: TCP
-      port: 1434
-      targetPort: 1434
+      port: 1450
+      targetPort: 1450
   type: LoadBalancer
