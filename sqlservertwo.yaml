@@ -42,7 +42,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: mssql-deployment
+  name: mssql-deployment2
 spec:
   selector:
     app: mssql2
