@@ -6,7 +6,7 @@ spec:
   replicas: 1
   selector:
      matchLabels:
-       app: mssql
+       app: mssql2
   template:
     metadata:
       labels:
@@ -15,7 +15,7 @@ spec:
       terminationGracePeriodSeconds: 30
       hostname: mssqlinst
       securityContext:
-        fsGroup: 10001
+        fsGroup: 10002
       containers:
       - name: mssql2
         image: mcr.microsoft.com/mssql/server:2019-latest
