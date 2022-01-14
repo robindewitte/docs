@@ -9,7 +9,7 @@ spec:
   selector:
     matchLabels:
       app: infinite-calls
-  template
+  template:
     metadata:
       name: infinite-calls
       labels:
