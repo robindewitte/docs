@@ -21,4 +21,4 @@ spec:
         command:
         - /bin/sh
         - -c
-        - "while true; do wget -q -O- http://localhost/memes; done"
+        - "while true; do wget -q -O- http://localhost:5001/api/searc/GetMemeTopics; done"
